@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package datastorage;
+
+service DataStorage{
+    rpc put(Data) returns (Key) {}
+    rpc get(Key) returns (Data) {}
+}
+
+message Data {
+    int32 num = 1;
+}
+
+message Key {
+    string k = 1;
+}
