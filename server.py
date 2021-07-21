@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import grpc
 from concurrent import futures
 import datastorage_pb2_grpc as pb2_grpc
