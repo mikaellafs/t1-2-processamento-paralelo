@@ -56,6 +56,10 @@ A instalação da ferramenta pode ser feita de acordo com as instruções em:
 
 <br>
 
+**Execução**
+
+<br>
+
 Abra um terminal na raiz do projeto e execute:
 
 ```

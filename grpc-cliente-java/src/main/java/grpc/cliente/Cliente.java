@@ -1,11 +1,12 @@
 /**
  *  Se alguns nomes não forem resolvidos, garantir que target/generated-sources/protobuf/java
  *  e target/generated-sources/protobuf/grpc-java são vistos como source roots pela IDE.
- *  //TODO Verificar se é possível fazer isso pelo pom
  */
 
 package grpc.cliente;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import io.grpc.ManagedChannel;
@@ -31,21 +32,24 @@ public final class Cliente implements Runnable
     @Override
     public void run()
     {
-        System.out.println("Processando ...");
-        Key[] keys = new Key[m];
+        List<Key> keys = new ArrayList<Key>(m);
         Random rand = new Random();
-        for( Key key : keys ) {
+        for( int i = 1; i <= m; i++ ) {
             int numero = rand.nextInt(10_000_000);
             Data request = Data.newBuilder().setNum(numero).build();
-            key = blockingStub.put(request);
-            System.out.print(key);
+            keys.add( blockingStub.put(request) );
+        }
+        for( Key key : keys ) {
+            System.out.print(key.getK() + " ");
+            Data numero = blockingStub.get(key);
+            System.out.println(numero.getNum());
         }
     }
 
     public static void main( String[] args )
     {
         final int numeroClientes = 1;
-        final int m = 1000;
+        final int m = 100;
         Cliente[] clientes = new Cliente[numeroClientes];
         for( Cliente cliente : clientes ) {
             cliente = new Cliente(m);
