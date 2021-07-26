@@ -35,26 +35,42 @@ public final class Cliente implements Runnable
         List<Key> keys = new ArrayList<Key>(m);
         Random rand = new Random();
         for( int i = 1; i <= m; i++ ) {
-            int numero = rand.nextInt(10_000_000);
-            Data request = Data.newBuilder().setNum(numero).build();
-            keys.add( blockingStub.put(request) );
+        keys.add( blockingStub.put(Data.newBuilder().setNum(rand.nextInt(10_000_000)).build()) );
         }
-        for( Key key : keys ) {
-            System.out.print(key.getK() + " ");
-            Data numero = blockingStub.get(key);
-            System.out.println(numero.getNum());
+        for( Key key : keys ) {            //System.out.println(key.getK() + " " + blockingStub.get(key).getNum());
+        blockingStub.get(key).getNum(); // Referente ao get sem fazer print nas linhas
         }
     }
 
     public static void main( String[] args )
     {
-        final int numeroClientes = 1;
-        final int m = 100;
+        final int numeroClientes = Integer.parseInt(args[0]);
+        final int m = Integer.parseInt(args[1]);       
+        
+        System.out.println("Clientes = " + args[0] + " - Números = " + args[1]);
+        ArrayList<Thread> threads = new ArrayList<>();
         Cliente[] clientes = new Cliente[numeroClientes];
+        
+        long tempoInicial = System.nanoTime();
         for( Cliente cliente : clientes ) {
-            cliente = new Cliente(m);
+            cliente = new Cliente(m/numeroClientes);
             Thread thread = new Thread(cliente);
+            threads.add(thread);
             thread.start();
         }
+        
+        for( Thread thread : threads ) {
+            try {
+                thread.join();
+            } catch ( InterruptedException e ) {
+                e.printStackTrace();
+            }
+        }
+        
+        threads.clear();
+        
+        long tempoFinal = System.nanoTime();
+        double tempo = (double) (tempoFinal - tempoInicial) / 1_000_000_000;
+        System.out.println("Tempo Gasto = " + tempo);
     }
 }
