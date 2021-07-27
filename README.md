@@ -71,5 +71,7 @@ Agora executamos o(s) cliente(s):
 
 ```
 $ cd target
-$ java -jar grpc-cliente-java-1.0-SNAPSHOT-jar-with-dependencies.jar
+$ java -jar grpc-cliente-java-1.0-SNAPSHOT-jar-with-dependencies.jar <num_clientes> <n_nums>
 ```
+
+Substituindo <num_clientes> pelo número de threads a serem executadas e <n_nums> pela quantidade de número a serem inseridos na hash do servidor.
