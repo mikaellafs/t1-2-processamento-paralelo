@@ -74,4 +74,14 @@ $ cd target
 $ java -jar grpc-cliente-java-1.0-SNAPSHOT-jar-with-dependencies.jar <num_clientes> <n_nums>
 ```
 
-Substituindo <num_clientes> pelo número de threads a serem executadas e <n_nums> pela quantidade de número a serem inseridos na hash do servidor.
+Substituindo <num_clientes> pelo número de threads a serem executadas e <n_nums> pela quantidade de números a serem inseridos na hash do servidor.
+
+
+## **Experimentos**
+
+Por questões técnicas, não conseguimos automatizar a execução no próprio código Java, então criamos o programa *execDados.sh* em shellscript para automatizar o processo. Após o comando `$ mvn package`, inserir uma cópia do arquivo *execDados.sh* na pasta target e então:
+
+```
+$ bash execDados.sh <n_nums>
+```
+Substituindo <n_nums> pela quantidade de números a serem inseridos na hash do servidor.
