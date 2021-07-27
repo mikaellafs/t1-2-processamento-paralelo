@@ -1,6 +1,7 @@
 /**
- *  Se alguns nomes não forem resolvidos, garantir que target/generated-sources/protobuf/java
- *  e target/generated-sources/protobuf/grpc-java são vistos como source roots pela IDE.
+ *  Se alguns nomes não forem resolvidos, executar "mvn compile" em /grpc-cliente-java/
+ *  e garantir que target/generated-sources/protobuf/java e target/generated-sources/protobuf/grpc-java
+ *  são vistos como source roots pela IDE (extensão para Maven, por exemplo).
  */
 
 package grpc.cliente;
@@ -35,10 +36,10 @@ public final class Cliente implements Runnable
         List<Key> keys = new ArrayList<Key>(m);
         Random rand = new Random();
         for( int i = 1; i <= m; i++ ) {
-        keys.add( blockingStub.put(Data.newBuilder().setNum(rand.nextInt(10_000_000)).build()) );
+            keys.add( blockingStub.put(Data.newBuilder().setNum(rand.nextInt(10_000_000)).build()) );
         }
-        for( Key key : keys ) {            //System.out.println(key.getK() + " " + blockingStub.get(key).getNum());
-        blockingStub.get(key).getNum(); // Referente ao get sem fazer print nas linhas
+        for( Key key : keys ) {
+            blockingStub.get(key).getNum(); // Referente ao get sem fazer print nas linhas
         }
     }
 

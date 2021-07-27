@@ -83,7 +83,7 @@ Por questões técnicas, não conseguimos automatizar a execução no próprio c
 
 Esse script executa o programa Cliente dez vezes para cada i = {1, 2, 4, 8} clientes que inserem a quantidade de números desejada.
 
-Na raiz do projeto, após o comando `$ mvn package`, executar:
+Na pasta /grpc-cliente-java/, após o comando `$ mvn package` , executar:
 
 ```
 $ bash execDados.sh <n_nums>
