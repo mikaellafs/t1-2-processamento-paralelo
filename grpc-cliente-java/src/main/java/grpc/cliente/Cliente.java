@@ -71,6 +71,6 @@ public final class Cliente implements Runnable
         
         long tempoFinal = System.nanoTime();
         double tempo = (double) (tempoFinal - tempoInicial) / 1_000_000_000;
-        System.out.println("Tempo Gasto = " + tempo);
+        System.out.println("Tempo Gasto = " + tempo + " s");
     }
 }

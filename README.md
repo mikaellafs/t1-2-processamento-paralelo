@@ -79,9 +79,13 @@ Substituindo <num_clientes> pelo número de threads a serem executadas e <n_nums
 
 ## **Experimentos**
 
-Por questões técnicas, não conseguimos automatizar a execução no próprio código Java, então criamos o programa *execDados.sh* em shellscript para automatizar o processo. Após o comando `$ mvn package`, inserir uma cópia do arquivo *execDados.sh* na pasta target e então:
+Por questões técnicas, não conseguimos automatizar a execução no próprio código Java, então criamos o programa *execDados.sh* em shellscript para automatizar o processo.
+
+Esse script executa o programa Cliente dez vezes para cada i = {1, 2, 4, 8} clientes que inserem a quantidade de números desejada.
+
+Na raiz do projeto, após o comando `$ mvn package`, executar:
 
 ```
 $ bash execDados.sh <n_nums>
 ```
-Substituindo <n_nums> pela quantidade de números a serem inseridos na hash do servidor.
+Substituindo <n_nums> pela quantidade de números a serem inseridos na tabela hash do servidor.

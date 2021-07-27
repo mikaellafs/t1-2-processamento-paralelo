@@ -14,5 +14,5 @@ for i  in  1 2 4 8; do
 		
 		let CONTADOR=CONTADOR+1; 
 	done
-	echo "i=$i : $TEMPO_MEDIO"
+	echo "i=$i : $TEMPO_MEDIO s"
 done
